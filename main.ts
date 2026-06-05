@@ -16,7 +16,7 @@ namespace anemometro {
      * @param pin pin digital donde está conectado el sensor
      * @param diametroCentimetros diámetro de la rueda o hélice en centímetros
      */
-    //% block="iniciar anemómetro en pin %pin con diámetro %diametroCentimetros cm"
+    //% block="iniciar sensor en pin %pin con diámetro %diametroCentimetros cm"
     //% diametroCentimetros.defl=7
     export function iniciar(pin: DigitalPin, diametroCentimetros: number): void {
         pinSensor = pin
@@ -45,12 +45,8 @@ namespace anemometro {
 
                         if (tiempoAnterior > 0) {
                             tiempoEntrePulsos = tiempoActual - tiempoAnterior
-
-                            // Velocidad base
                             velocidad_ms = circunferencia / (tiempoEntrePulsos / 1000)
-
-                            // Conversión a km/h y multiplicación x10
-                            velocidad_kmh = velocidad_ms * 3.6 * 10
+                            velocidad_kmh = velocidad_ms * 3.6
                         }
 
                         tiempoAnterior = tiempoActual
@@ -71,25 +67,25 @@ namespace anemometro {
     }
 
     /**
-     * Devuelve la velocidad en kilómetros por hora multiplicada por 10.
+     * Devuelve la velocidad en kilómetros por hora con 2 decimales.
      */
-    //% block="velocidad km/h x10"
-    export function velocidadKmHX10(): number {
+    //% block="velocidad en km/h"
+    export function velocidadKmH(): number {
         return Math.round(velocidad_kmh * 100) / 100
     }
 
     /**
-     * Devuelve la velocidad en metros por segundo multiplicada por 10.
+     * Devuelve la velocidad en metros por segundo con 2 decimales.
      */
-    //% block="velocidad m/s x10"
-    export function velocidadMSX10(): number {
-        return Math.round((velocidad_ms * 10) * 100) / 100
+    //% block="velocidad en m/s"
+    export function velocidadMS(): number {
+        return Math.round(velocidad_ms * 100) / 100
     }
 
     /**
      * Reinicia la medición de velocidad.
      */
-    //% block="reiniciar anemómetro"
+    //% block="reiniciar medición"
     export function reiniciar(): void {
         velocidad_kmh = 0
         velocidad_ms = 0
