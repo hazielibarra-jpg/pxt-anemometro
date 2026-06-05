@@ -10,7 +10,6 @@ namespace anemometro {
     let estadoActual = 1
     let pinSensor = DigitalPin.P0
     let iniciado = false
-    let factorCalibracion = 10
 
     /**
      * Inicia el sensor para medir velocidad con un imán.
@@ -47,8 +46,8 @@ namespace anemometro {
                         if (tiempoAnterior > 0) {
                             tiempoEntrePulsos = tiempoActual - tiempoAnterior
 
-                            // Calcula la velocidad y aplica factor de calibración
-                            velocidad_ms = (circunferencia / (tiempoEntrePulsos / 1000)) * factorCalibracion
+                            // Calcula la velocidad normal
+                            velocidad_ms = circunferencia / (tiempoEntrePulsos / 1000)
                             velocidad_kmh = velocidad_ms * 3.6
                         }
 
@@ -74,7 +73,7 @@ namespace anemometro {
      */
     //% block="velocidad en km/h"
     export function velocidadKmH(): number {
-        return Math.round(velocidad_kmh * 100) / 100
+        return Math.round((velocidad_kmh * 10) * 100) / 100
     }
 
     /**
@@ -82,7 +81,7 @@ namespace anemometro {
      */
     //% block="velocidad en m/s"
     export function velocidadMS(): number {
-        return Math.round(velocidad_ms * 1000) / 100
+        return Math.round((velocidad_ms * 10) * 100) / 100
     }
 
     /**
