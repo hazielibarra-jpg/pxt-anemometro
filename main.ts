@@ -48,7 +48,7 @@ namespace anemometro {
 
                             // Calcula la velocidad y multiplica el resultado por 10
                             velocidad_ms = (circunferencia / (tiempoEntrePulsos / 1000)) * 10
-                            velocidad_kmh = (velocidad_ms * 3.6*10)
+                            velocidad_kmh = (velocidad_ms * 3.6*100)
                         }
 
                         tiempoAnterior = tiempoActual
