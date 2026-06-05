@@ -82,7 +82,7 @@ namespace anemometro {
      */
     //% block="velocidad en m/s"
     export function velocidadMS(): number {
-        return Math.round(velocidad_ms * 100) / 100
+        return Math.round(velocidad_ms * 1000) / 100
     }
 
     /**
