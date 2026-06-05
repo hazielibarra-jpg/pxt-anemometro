@@ -65,19 +65,21 @@ namespace anemometro {
     }
 
     /**
-     * Devuelve la velocidad en kilómetros por hora.
+     * Devuelve la velocidad en kilómetros por hora con 2 decimales.
      */
     //% block="velocidad en km/h"
     export function velocidadKmH(): number {
-        return velocidad_kmh
+        // Multiplica por 100, redondea al entero más cercano y divide entre 100
+        return Math.round(velocidad_kmh * 100) / 100
     }
 
     /**
-     * Devuelve la velocidad en metros por segundo.
+     * Devuelve la velocidad en metros por segundo con 2 decimales.
      */
     //% block="velocidad en m/s"
     export function velocidadMS(): number {
-        return velocidad_ms
+        // Multiplica por 100, redondea al entero más cercano y divide entre 100
+        return Math.round(velocidad_ms * 100) / 100
     }
 
     /**
