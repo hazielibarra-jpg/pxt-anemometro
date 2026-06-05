@@ -73,7 +73,7 @@ namespace anemometro {
      */
     //% block="velocidad en km/h corregida"
     export function velocidadKmH(): number {
-        return Math.round(velocidad_kmh * 100) / 100
+        return Math.round(velocidad_kmh * 1000) / 100
     }
 
     /**
