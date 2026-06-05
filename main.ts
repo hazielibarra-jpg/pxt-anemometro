@@ -16,12 +16,12 @@ namespace anemometro {
      * @param pin pin digital donde está conectado el sensor
      * @param diametroMetros diámetro de la rueda o hélice en metros
      */
-    //% block="iniciar sensor en pin %pin con diámetro %diametroMetros m"
+    //% block="iniciar sensor en pin %pin con diámetro %diametroMetros cm"
     //% diametroMetros.defl=0.07
     export function iniciar(pin: DigitalPin, diametroMetros: number): void {
         pinSensor = pin
         diametro = diametroMetros
-        circunferencia = Math.PI * diametro
+        circunferencia = Math.PI * diametro/10
 
         velocidad_kmh = 0
         velocidad_ms = 0
