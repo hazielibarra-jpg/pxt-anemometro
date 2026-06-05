@@ -46,9 +46,9 @@ namespace anemometro {
                         if (tiempoAnterior > 0) {
                             tiempoEntrePulsos = tiempoActual - tiempoAnterior
 
-                            // Calcula la velocidad normal
-                            velocidad_ms = circunferencia / (tiempoEntrePulsos / 1000)
-                            velocidad_kmh = velocidad_ms * 3.6
+                            // Calcula la velocidad y multiplica el resultado por 10
+                            velocidad_ms = (circunferencia / (tiempoEntrePulsos / 1000)) * 10
+                            velocidad_kmh = (velocidad_ms * 3.6)
                         }
 
                         tiempoAnterior = tiempoActual
@@ -71,17 +71,17 @@ namespace anemometro {
     /**
      * Devuelve la velocidad en kilómetros por hora con 2 decimales.
      */
-    //% block="velocidad en km/h"
+    //% block="velocidad en km/h corregida"
     export function velocidadKmH(): number {
-        return Math.round((velocidad_kmh * 10) * 100) / 100
+        return Math.round(velocidad_kmh * 100) / 100
     }
 
     /**
      * Devuelve la velocidad en metros por segundo con 2 decimales.
      */
-    //% block="velocidad en m/s"
+    //% block="velocidad en m/s corregida"
     export function velocidadMS(): number {
-        return Math.round((velocidad_ms * 10) * 100) / 100
+        return Math.round(velocidad_ms * 100) / 100
     }
 
     /**
