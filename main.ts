@@ -4,8 +4,8 @@ namespace anemometro {
     let tiempoEntrePulsos = 0
     let tiempoAnterior = 0
     let tiempoActual = 0
-    let diametro = 0.07
-    let circunferencia = Math.PI * diametro
+    let diametroCm = 7
+    let circunferencia = Math.PI * (diametroCm / 100)
     let estadoAnterior = 1
     let estadoActual = 1
     let pinSensor = DigitalPin.P0
@@ -14,14 +14,16 @@ namespace anemometro {
     /**
      * Inicia el sensor para medir velocidad con un imán.
      * @param pin pin digital donde está conectado el sensor
-     * @param diametroMetros diámetro de la rueda o hélice en metros
+     * @param diametroCentimetros diámetro de la rueda o hélice en centímetros
      */
-    //% block="iniciar sensor en pin %pin con diámetro %diametroMetros cm"
-    //% diametroMetros.defl=0.07
-    export function iniciar(pin: DigitalPin, diametroMetros: number): void {
+    //% block="iniciar sensor en pin %pin con diámetro %diametroCentimetros cm"
+    //% diametroCentimetros.defl=7
+    export function iniciar(pin: DigitalPin, diametroCentimetros: number): void {
         pinSensor = pin
-        diametro = diametroMetros
-        circunferencia = Math.PI * diametro/10
+        diametroCm = diametroCentimetros
+
+        // Convierte el diámetro de cm a metros
+        circunferencia = Math.PI * (diametroCm / 100)
 
         velocidad_kmh = 0
         velocidad_ms = 0
@@ -69,7 +71,6 @@ namespace anemometro {
      */
     //% block="velocidad en km/h"
     export function velocidadKmH(): number {
-        // Multiplica por 100, redondea al entero más cercano y divide entre 100
         return Math.round(velocidad_kmh * 100) / 100
     }
 
@@ -78,7 +79,6 @@ namespace anemometro {
      */
     //% block="velocidad en m/s"
     export function velocidadMS(): number {
-        // Multiplica por 100, redondea al entero más cercano y divide entre 100
         return Math.round(velocidad_ms * 100) / 100
     }
 
